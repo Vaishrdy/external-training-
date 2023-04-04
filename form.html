@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <center><h1>FORM ELEMENTS</h1></center>
+    </div>
+    <div style="text-align: center;">
+        <div>
+            <label for="user_name">USERNAME :</label>
+            <input id="user_name" type="text" placeholder="Enter your full name">
+        </div>
+        <div>
+            <label for="pw">PASSWORD :</label>
+            <input id="pw" type="password" placeholder="Enter your password">
+        </div>
+        <div>
+            <label for="mail">EMAIL :</label>
+            <input id="mail" type="email" placeholder="Enter your maik-id">
+        </div>
+        <div>
+            <label for="choose">Choose the correct option:</label>
+            <br>
+            <input id="choose" name="ques_1" type="radio" /> option 1
+            <input id="choose" name="ques_1" type="radio" /> option 2
+            <input id="choose" name="ques_2" type="radio" /> option 3
+            <input id="choose" name="ques_2" type="radio" /> option 4   <!--options with same name cant be selected simultaneously-->
+        </div>
+        <div>
+            <span>Select a country</span>
+            <select name="" id="">
+                <option value="">--Select your country--</option>
+                <option value="Rupee">INDIA</option>
+                <option value="USD">AMERICA</option>
+                <option value="Pound">UK</option>
+            </select>
+        </div>
+        <div>
+            <p>Select multiple values</p>
+            <input type="checkbox">a.
+            <input type="checkbox">b.
+            <input type="checkbox">c.
+            <input type="checkbox">d.
+        </div>
+        <div>
+            <p>Select a file to upload</p>
+            <input type="file">
+        </div>
+        <div>
+            <p>Date of birth , Time of birth</p>
+            <input type="date">
+            <input type="time">
+        </div>
+        <div>
+            <p>Select the desired range</p>
+            <input type="range" min="0" max="5000">
+        </div>
+        <div>
+            <p>Enter your age :</p>
+            <input type="number" min="18" max="60">
+        </div>
+        <div>
+            <p>Choose a colour:</p>
+            <input type="color">
+        </div>
+        <div>
+            <p>Write about your favourite show</p>
+            <textarea rows="15">Start typing here</textarea>
+        </div>
+        <div>
+            <p>speech to search</p>
+            <input type="text" x-webkit-speech/> <!--speak to speech--> 
+        </div>
+        <div>
+            <video height="200px" width="100%" autoplay controls >
+                <source src="path to mp4 file">
+            </video>
+        </div>
+        <div>
+            <audio src="path to audio file" controls></audio>
+        </div>
+
+    </div>
+</body>
+</html>
