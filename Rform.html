@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registartion form ex</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+    <form action="">
+        <h1 class="main_heading">REGISTRATION FORM </h1>
+        <!--<p>Required fields are followed by *</p> u can write this and give *  after every compulsory field to let the use know.-->
+        <hr>
+        <h2>Contact information</h2>
+        <p>Name : 
+            <input type="text" name="name" required placeholder="Enter your name"> </p>   <!--name attribut is must in input element for info to reach server-->
+        </p>
+        <p>
+            <fieldset>
+                <legend>Gender *</legend>
+                Male <input type="radio" name="gender" id="male" required>      <!--name attribute value is unique but under radio type the options provided by u to user must have same name so that they can select only one option-->
+                Female <input type="radio" name="gender" id="female" required>
+            </fieldset>
+        </p>    
+        <!--<p> Address:</p>
+            <textarea name="address" id="address" cols="90" rows="7" placeholder="enter your address"></textarea> -->
+        
+        <p>Email : 
+            <input type="email" name="email" id="email" required placeholder="Enter your email-id">
+        </p>
+        
+        <p>
+            <input type="submit" value="Submit now">
+        </p>
+        
+        
+    </form>
+    </div>
+    <!-- after filling this form we get entire info in url with our data against values this is bcas form method is "get" but if its
+    sensitive information u can use method "post"-->
+   
+</body>
+</html>
