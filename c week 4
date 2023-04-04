@@ -1,0 +1,61 @@
+ /* 
+//Default
+public class week4 {
+    void msg(){System.out.println("hi iam a Class A");
+    }
+}
+class demo{
+    public static void main(String args[]){
+        week4 ob=new week4();
+        ob.msg();
+    }
+}//here it prints output by taking default acess specifier
+*/
+
+/*//Public
+class A{ //here if we keep public class A 
+    //then the file should be saved as A.java which is not req to do so.
+    public int data=10;
+    public void msg(){
+        System.out.println ("Helloworld");
+    }
+}
+public class week4{
+    public static void main(String args[]){
+        A obj=new A();//OK:Class A is Public
+        System.out.println(obj.data);//OK: data is Public
+        obj.msg();
+    }
+}
+*/
+
+/* 
+//Private
+class A{
+    private int data=10;
+    public void msg(){
+        System.out.println ("Helloworld");
+    }
+}
+public class week4{
+    public static void main(String args[]){
+        A obj=new A();//OK:Class A is Public
+        System.out.println(obj.data);//Compile time error : data is Private
+        obj.msg();//OK:msg is public
+    }
+}*/
+/* 
+//Protected
+class A{
+    protected int data=10;
+    public void msg(){
+        System.out.println ("Hello world"+data);
+    }
+}
+class week4{
+    public static void main(String args[]){
+        A obj=new A();
+        System.out.println("helloworld"+obj.data);
+    }
+}
+*/
