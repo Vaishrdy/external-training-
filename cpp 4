@@ -1,0 +1,50 @@
+#include<stdio.h>
+
+//TCS NINJA -- ORDER OF PRECEDENCE
+int main(){
+	int a;
+	a=(1,2,3); // 	precedence : () > = > ,
+	printf("%d",a);
+}
+
+//Output is 3
+//REASON : () are of highest precedence and brackets perform STACK EVALUATION(LIFO) so element at top of stack i.e., 3 is assigned to a.
+
+//DOUBTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+int main(){
+	int a=5;
+	a=a*a=10;  // precedence of * > = so we get a=25=10
+	printf("%d",a);
+}
+
+//Output is COMPILE ERROR 
+//REASON : It is not correct according to precedence (a is already declared 5 again giving 25 is not crct as per precedence)
+
+int main(){
+	int a=5;
+	a=a*(a=10); 
+	printf("%d",a);
+}
+
+//OUTPUT is 100
+//REASON : () are of highest priority so a=10 initialisation is done first and then a*a--10*10 gives 100 as answer
+
+//DOUBTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+int main(){
+	int a=2;
+	a=a*(a=10)+a/(a=3);
+	printf("%d",a);
+}
+//OUTPUT is 101
+//REASON : a*(a=10)+a/(a=3) 
+		// a*a10+a/(a=3)
+		// (a*a10)+(a/a3) ---- considering them as 2 seperate cases
+		// 100 + 1 = 101
+
+
+int main(){
+	int a=2;
+	a=63*5+4%6*2/3-2;
+	printf("%d",a);
+}
+//OUTPUT is 315
