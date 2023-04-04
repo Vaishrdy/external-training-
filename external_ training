@@ -1,0 +1,823 @@
+External Training-1/11/2022
+
+-->C lang was created by Dennis Ritchie in 1972(1969-1973) at bell labs
+-->it was created using the assembly language
+-->It was formalisedd in the year 1988 by ANSI(american national standard institute)
+-->latest version of C is C-17 came in the year 2018
+OPERATOR-A unit of operation
+COMPILER-It converts code to machine code(binary)
+FORMAT SPECIFIER-It specifies the format to the compiler
+-->In turbo C++ the i t is short(2bytes)
+-->There is no boolean datatype in C for true or false we use <stdbool.h>
+
+for versions >= C11
+VALUE             DATATYPE                FORMATSPECIFIER               SIZE                  sRANGE
+...................................................................................................................................................................
+23                      int                               %d,%li                                     4bytes                (32,762)--(-32,768)                
+21L                    int or long int              %d,%i                                       2bytes                -2147483648 -- 2147483647
+34LL                  long long                    %lli,%lld                                   8bytes                 Large numbers
+'a'                       char                            %c,%s                                      1byte                  -128 -- 127
+16.4f                  float                            %f                                            4bytes                3.4^(+-8)[7 digit precise]
+44.4                   double                         %lf                                           8bytes                [14 digit precise]
+16.4Lf                long double                 %Lf                                          12bytes              --(long double is more accurate than double)
+                                                                                                                                         [18 digit precise]
+
+
+special operators : sizeof(),*(dereference),&(reference)
+misceellaneous : [](subscrip), ,(comma) etc
+
+TOKENS--smallest unit of a program
+1) Identifier: identifiers or symbols are the names which are given to variables,types,funcs and  labels in a program
+                    a.spaces and digits at start are not allowed 
+                    b.special charecters are not allowed except for the _(underscore)
+2)Keywords: predefined words by the compiler. There are 32 reserved keywords in C
+3)Constants: there are two types of constants--
+                     1.Numeric(integer,floating....,hex,dec)
+                     2.Charecter(char,backslash[ex:- '\n','\t')
+4)Operato: A unit of operation. Ex:- +,-,etc
+5)Strings: Collections of charecters terminated by '\0'
+6)Misc: {},(),;(seperator),#(headerfile)etc
+
+pro1:
+#include <stdio.h>
+int main() {
+    int a=2;
+    double b=5;
+    printf("%d",b/a) //printf("%f",b/a) then output will be 2.5....
+    return 0;
+}
+output:0
+//TCS NINJA(printing double as int==0)
+//CASTING: converting onr type to another
+//double/int==double this type is called IMPLICIT csting or widening casting ie; converting smaller type is converted to bigger type
+//EXPLICIT(Narrowing) casting :bogger type is converted to smaller type
+pro2:
+#include <stdio.h>
+int main() {
+    double b=5.2;
+    printf("%d",b)
+    return 0;
+}
+output:some garbage value
+
+///REFER TO ORDER OF PRECEDENCE IN GOOGLE: ---- IMPORTANT TO SOLVE 2/3 TCS NINJA MCQ'S  ******
+
+#include<stdio.h>
+//TCS NINJA QUESTIONS 
+int main(){
+	int k; //Definition , Declaration
+	k=3; //Initialisation
+	int x=1,2,3;
+	printf("%d",x);
+}
+
+//output is COMPLIE ERROR 
+//RESAON : Variables were not created for 2,3
+
+int main(){
+	int x;
+	x=1,2,3;
+	printf("%d",x);
+}
+//the diff bw above ex and this is ...here we already declared x as an int
+//output is 1
+//REASON : Comma(,) has the LEAST PRECEDENCE so it will evaluate = first and 1 is alloacted to x.(initialisation is done)
+//Paranthesis() has the HIGHEST PRECEDENCE IN C
+
+int main(){
+	int x;
+	x=printf("Var"),printf("He");
+}
+//output is VarHe
+
+
+-->Modulus operator (%) returns remainder of n/x :
+	formulas of n%x is = n- ((n/x)*x)
+
+#include<stdio.h>
+
+//TCS NINJA -- ORDER OF PRECEDENCE
+int main(){
+	int a;
+	a=(1,2,3); // 	precedence : () > = > ,
+	printf("%d",a);
+}
+
+//Output is 3
+//REASON : () are of highest precedence and brackets perform STACK EVALUATION(LIFO) so element at top of stack i.e., 
+3 is assigned to a.
+
+//DOUBT
+int main(){
+	int a=5;
+	a=a*a=10;  // precedence of * > = so we get a=25=10
+	printf("%d",a);
+}
+
+//Output is COMPILE ERROR 
+//REASON : It is not correct according to precedence (a is already declared 5 again giving 25 is not crct as per precedence)
+
+int main(){
+	int a=5;
+	a=a*(a=10); 
+	printf("%d",a);
+}
+
+//OUTPUT is 100
+//REASON : () are of highest priority so a=10 initialisation is done first and then a*a--10*10 gives 100 as answer
+
+//doubt
+int main(){
+	int a=2;
+	a=a*(a=10)+a/(a=3);
+	printf("%d",a);
+}
+//OUTPUT is 101
+//REASON : a*(a=10)+a/(a=3) 
+		// a*a10+a/(a=3)
+		// (a*a10)+(a/a3) ---- considering them as 2 seperate cases
+		// 100 + 1 = 101
+
+int main(){
+	int a=2;
+	a=63*5+4%6*2/3-2;
+	printf("%d",a);
+}
+//OUTPUT is 315
+--------------------------------------------------------------------------------**********----------------------------------------------------------------------
+External Training-15/11/2022
+
+
+--In binary representation of a number,if LSB is 1 the number is ODD.
+                                                          if LSB is 0 the number is EVEN.
+--Always represent in 8-bit format only(8-00001000) for binary numbers.
+
+1298 in binary      
+ 649 1
+324 0
+162 0
+81 1
+40 0
+20 0
+10 0
+5 1
+2 0
+1 1
+5678 in binary
+2836 0
+1418 0 
+709 1 
+354 0
+177 1
+88 0
+44 0
+22 0
+11  1
+5  1
+4  0
+2  1
+
+**AND bitwise operation in binary**
+   17-010001
+&25-  11001                                               
+     ------------
+          10001=17
+   35-100011
+&96-110000
+      -----------
+        32
+--35 is 32+2 and 96 is 64+32 common b/w them is 32 so ans is 32(SHORTCUT)
+   117-001110101
+&264-10001000
+ans=00000000(as no commin no's)
+
+**OR bitwise operation in binary**
+0 1=1
+1 1=1
+0 0=0
+1 0=1
+  17-010001
+ | 25-11001
+  ------------
+    ans=25
+  76-1001100
+ | 22-1011110
+ -----------------
+       ans=94-1011110
+SHORTCUT we do 76+(16+2)----bcoz 16,2 are there in 22 but not in 76
+
+**XOR bitwise operation in binary**
+0 0=0
+0 1=1
+1 0=1
+1 1=0
+
+13^17
+13=(8+4+1)-01101
+17=(16+1)--10001
+ans=11100=28
+
+32^16
+32=100000
+16=010000
+ans=110000
+
+47^53
+47=(32+4+2+1)--101111
+53=(32+16+4+1)-110101
+ans=011010=26
+
+18^9
+18=(16+2)-10010
+9(8+1)------01001
+ans=11011=27
+
+37^19
+37=(32+4+1)-100101
+19=(16+3)----010011
+ans=110110=54
+
+**LEFT SHIFT  bitwise in binary**
+
+It shifts 1st bit to right side 
+7<<1=0111<<1=1110(14)
+7<<2=00111<<2=11100(28)
+7<<3=000111<<2=000111(56)
+7<<4=00000111<<2=11100000(112)
+--FORMULA for [N<<K == N*2^K]
+
+**RIGHT SHIFT bitwise in binary**
+
+It shifts last bit to left side(K bits will dissappear)
+35>>1(K)=0100011>>1=010001(17)
+35>>2=0100011>>2=01000(8)
+--FORMULA for [N>>K ==| N/2^K|]
+
+Precedence for bitwise -- [ (<<,>>) > (&) > (^) > (|) ]
+Examples:
+1*----12&3|5^2
+#include <stdio.h>
+int main() {
+    printf("%d",0|7);
+    return 0;
+}
+#12&3=0--5^2=7--0|7=7
+ans=7
+
+2*----13>>1&4|3
+#include <stdio.h>
+int main() {
+    printf("%d",4|3);
+    return 0;
+}
+#13>>1=6--6&4=4--4|3=7
+ans=7
+
+3*----67^3^5&2&1
+#include <stdio.h>
+int main() {
+    printf("%d",67^3^5&2&1);
+    return 0;
+}
+#Associativity is left to right
+#5&2=0--0&1=0--67^3=64--64^0=64
+ans=64
+
+4*----45^3&5|56>>1<<3
+#include <stdio.h>
+int main() {
+    printf("%d",45^3&5|56>>1<<3);
+    return 0;
+}
+#56>>1=28--28<<3=244--3&5=1--45^1=44--44|244=236
+ans=236
+
+1Q:Which operator has highest time complexity?
+A:Modulus operator-%
+
+2Q:Which operator has least time complexity?
+A:BITWISE operators
+
+Example programs:
+
+1)
+#include <stdio.h>
+int main() {
+    int var=56;
+    if (var%2==0){
+        printf("Even");
+    }
+    else{
+        printf("Odd");
+    }
+    return 0;
+}
+
+*****The EFFICIENT program is by using bitwise &:*****
+#include <stdio.h>
+int main() {
+    int var=56;
+    if ((var&1)==0){
+        printf("Even");
+    }
+    if ((var&1)==1){
+        printf("Odd");
+    }
+    return 0;
+}
+
+2)
+#include <stdio.h>
+int main() {
+    int age=56;
+    int aadhar=2;
+    int someID=1;
+    if(age>18 && (aadhar==1 || someID==1)){
+        printf("OLD");
+    }
+    else{
+        printf("NOT OLD");
+    }
+    return 0;
+}
+output=NOT OLD
+
+
+3)
+#include <stdio.h>
+int main() {
+    char grade='A';
+    if (grade=='A'){
+        printf("Car");
+    }
+    else if (grade=='B'){
+        printf("Bike");
+    }
+    else if (grade=='C'){ //Use else if instead of else to overcome the EXCEPTION handling(Never leave blank else cases)
+        printf("RTC");
+    }
+    return 0;
+
+Q:What makes a good alorithm?
+A:1)Correctness         2)Efficiency
+
+Example:
+Print the largest number
+#include <stdio.h>
+int main() {
+    int a=9;
+    int b=7;
+    int c=8;
+    //Print large number
+    if ((a>=b) && (a>=c)){
+        printf("%d",a);
+    }
+    else if ((b>=a) && (b>=c)){
+        printf("%d",b);
+    }
+    else if ((c>=a) && (c>=b)){
+        printf("%d",c);
+    }
+    return 0;
+}
+#Here if you didn't keep = symbol it will not evaluate for some cases (Like 7 7 2 it will print 2)
+
+**The solution is:**
+#include <stdio.h>
+int main() {
+    int a=25;
+    int b=7;
+    int c=4;
+    //Print large number
+    if ((a>=b) && (a>=c)){
+        printf("%d",a);
+    }
+    else if ((b>=c)){  // Already a is eliminated if it is not big
+        printf("%d",b);
+    }
+    else{
+        printf("%d",c);//Already b is eliminated if not big
+    }
+    return 0;
+}
+#It checks 6 times for the input 2 3 7 It can check up to 6 times
+Time complexity(n)               if repeat 100times n(100)             if repeat 1000 times n(1000)          if repeat 10000 times n(10000)
+ 6                                              600                                             6000                                             60000
+
+****The EFFICIENT way is by using TERNARY operators****
+
+for 2 variables
+#include <stdio.h>
+int main() {
+    int a=25;
+    int b=100;
+    printf(a>=b ? "A":"B");  //If answer true if prints a  if false it prints b
+    return 0;
+}
+OUT:B
+
+for 3 variables
+#include <stdio.h>
+int main() {
+    int a=3,b=5,c=7;
+    printf(a>=b ? (a>=c ? "A":"C") : (b>=c?"B":"C")); //if 3>=5 false so 3>=7 false so here "C" will be and 5>=7 false so here"C" hence C is output
+    return 0;
+}
+
+Here no.of checks is reduced to 4 checks (maximum)
+
+for 4 variables
+#include <stdio.h>
+int main() {
+    int a=25,b=26,c=27,d=28;
+    printf(a>=b ? a>=c ? a>=d ?"A":"D" : c>=d? "C":"D" : b>=c? b>=d ? "B":"D" : c>=d?"C":"D");
+    return 0;
+}
+here total 6 checks only for 4 variables----here we use c>=d two times as first case is for checking a 
+if a case is false it prints d so check with c and next go to b and idf is small i.e;false now again check c and d so that it satisfies all cases
+
+****The MOST EFFICIENT method is by usin SWITCH case(main advantage is it jumps instead of more no.of comparisions)****
+#include <stdio.h>
+int main() {
+   char grade='A';
+   switch (grade){
+       case'A':printf("Car");
+       break;
+       case'B':printf("Bike");
+       break;
+       case'C':printf("Rtc");
+       break;
+       default:printf("Walk");
+       break; 
+   }
+    return 0;
+}
+
+DOUBT
+/*#include <stdio.h>
+int main() {
+    //if marks are between 700 and 800,grade is A
+    //if marks are between 600 and 699,grade is B
+    //if marks are between 400 to 599,grdade is c
+    //if marks are between 0 and 399,grade is F
+    int marks=422;
+    switch (marks){
+        case 1:(marks>=700 && marks<=800);
+        printf("A");
+        break;
+        case 2 : (marks>=600 && marks<=699);
+        printf("B");
+        break;
+        case 3: (marks>=400 && marks<=599);
+        printf("C");
+        break;
+        case 4: (marks>=0 && marks<=399);
+        printf("F");
+        break;
+    }
+   }
+    return 0;
+}*/
+----------------------------------------------------------------********-------------------------------------------------------------------------
+External Training - 6-11-22
+                                                                                 OOPS
+$What makes lang OOP?
+#Any lang is said to be Object Oriented if it has:
+            -Objects
+            -Classes
+            -Priciples--Abstraction,Encapsulation,Inheritence,Polymorphism
+ 
+$What is the first object oriented programming language?
+#Simula (Originated in 1960's)
+
+$What is the first purely/truly OOP lang?
+#Smalltalk
+
+$Define Class?
+#It is a blue print of an object
+
+$Define Object?
+#It is an instance of the Class
+
+------------------------------------------------------------*****-------------------------------------------------------------
+External Training - 21-02-23
+
+Getter and Setter are methods used to protect your data and make your code more secure. 
+Getter returns the value (accessors), it returns the value of data type int, String, double, float, etc. 
+For the program’s convenience, getter starts with the word “get” followed by the variable name.
+
+While Setter sets or updates the value (mutators). It sets the value for any variable used in a class’s programs,and starts 
+with the word “set” followed by the variable name. 
+Getter and Setter make the programmer convenient in setting and getting the value for a particular data type. 
+In both getter and setter, the first letter of the variable should be capital.
+
+
+class insta{
+    String username="shivani";
+    private String password="jkjshkffk";
+    public void updatepassword(String newPassword){
+        password = newPassword;
+    }
+    public String getPassword(){
+        return password;
+    }
+}
+public class student{
+    public static void main(String args[]){
+        insta s1=new insta();
+        System.out.println(s1.username);
+        System.out.println(s1.getPassword());
+        s1.updatepassword("Shivani");
+        System.out.println(s1.getPassword());
+
+
+    }
+}
+
+>>Class- Collection of properties(Encapsulation)
+to encapsulate properties-CLASS
+to encaplsulate class-PACK
+
+>>CONSTRUCTOR 
+Constructor is the method which is executed when an object is created by default (we need not call it using object like other methods
+it is called automatically by compiler)
+rules:
+1.Name of constructor is same as that of class
+2.It shld not have any return type
+3.We can have any no.of constructors depending on the way we create objects(i.e., no of objects)
+There are 2 types of constructors :
+1.default(non-arguement)		
+2.parametarized
+
+ IRRESPECTIVE OF SCOPE WHEN WE USE "this.varibale_name"  it will directly access the class variables i.e., gobal scope variables
+(ignoring local scope even if present)
+
+------------------------------------------------------------*****-------------------------------------------------------------
+External Training - 28-02-23
+
+
+Task:
+import java.util.*;
+import java.util.Scanner;
+public class student{
+    class bike{
+        String name;
+        String model;
+        int year;
+        public bike(String name,int year,String model){
+            this.name=name;
+            this.model=model;
+            this.year=year;
+        }
+    }
+    class retailer{
+        Scanner sc=new Scanner (System.in);
+        String name,model;
+        int year;
+    }
+    class dealer{
+        bike b1=new bike(name:"Meteor",year:2000,model:"360");
+//same b2 b3 also take
+
+    }
+}
+
+
+INHERTITANCE:
+
+Single -one parent and one child
+Multilevel-class C-->Class B-->Class A
+Hierarchial-class B,Class C are children of Class A(Multiple child classes) and class b and class c are sibling classes
+Multiple-multiple parent classes and one child class-----Not supported in java
+Hybrid-combo of any two  or more inheritances(hierarchial and multiple)
+
+>>Single:
+import java.util.*;
+import java.util.Scanner;
+//single level
+class A{
+    String name="in class a";
+    public void Welcome(){
+        System.out.println("Welcome to class A");
+    }
+}
+class B extends  A{
+ //here if we give a strin name="Shivani" we also get Shivani as output as child overwrites parent
+}
+public class inherit{
+    public static void main(String srgs[]){
+        B ob=new B();
+        System.out.println(ob.name);
+        ob.Welcome();
+    }
+}
+
+Multilevel:
+//multilevel
+class A{
+    String name_1="in class a";
+    public void Welcome(){
+        System.out.println("Welcome to class A");
+    }
+}
+class B extends  A{
+    String name_2="in class b";
+    public void home(){
+        System.out.println("Welcome home in class b");
+    }
+}
+class C extends B{
+    public void zoo(){
+        System.out.println("Welcome to zoo");
+    }
+}
+public class inherit{
+    public static void main(String srgs[]){
+        B ob=new B();
+        System.out.println(ob.name_1);
+        ob.Welcome();//here the output will be class A 
+        //ob.home(); then op will be class b
+        //ob.zoo; then op will be  class c
+        //if class c extends A then class c has no relation to b
+    }
+}
+
+//Hierarchial
+class dept{
+    String name="Iam ECE";
+    public void branch(){
+        System.out.println("Welcome to ECE");
+    }
+}
+class faculty extends dept{
+    String name="Em levv";
+    public void facult(){
+        System.out.println("I pretend to teach");
+    }
+}
+class student extends dept{
+    String name="Manchipillalu";
+    public void stud(){
+        System.out.println("Memu amayakulam");
+    }
+}
+public class inherit{
+    public static void main(String args[]){
+        dept ob=new dept();
+        System.out.println(ob.name);
+        ob.branch();
+    }
+}
+
+
+//Multiple
+//************the reason of not supporting multiple inheritence in java is DIAMOND PROBLEM ie., it has two parents of same 
+//method the compiler doesnot know from which class and which method  to execute 
+//to use multiple we use INTERFACE in java****************
+interface A{
+    public void Welcome();
+        public void something();
+}
+interface B{
+    public void Welcome();
+}
+class C implements A,B{//the methods declared in parent shld be defined here
+    public void Welcome(){
+        System.out.println("Welcome to Class c");
+    }
+    public void something(){
+
+    }
+}
+public class inherit{
+    public static void main(String args[]){
+
+    }
+}
+//Interfaces have only method declaration.They are public,static and final.Child class acquires props of parent class.
+
+concept of array list
+add(value)
+remove(value)
+.get(index)
+<Integer> here is a class not a datatype
+**Arraylist will hold the Objectsof a class when u want store a integer we type:
+ArrayList<Integer>=
+
+#practice 2
+list of books avail
+availab check
+book id and user id while borrowing
+no of days while return
+
+Polymorphism:
+A method acting differently in diff scenarios.
+Compile time poly=Method overloading-- same class,same method but diff signature(no of parameters)
+Run timepoly=Method overriding--two different classes,same method  but diff in implementation.
+
+//Method overriding
+import java.util.*;
+import java.util.Scanner;
+class shape{
+    public void area(){
+        System.out.println("Area is:");
+    }
+}
+class square extends shape{
+    public void area(){  
+        int a=4;
+        System.out.println(a*a);
+    }
+}
+class triangle extends shape{
+    public void area(){
+        int l=4;
+        int b=2;
+        System.out.println(l*b);
+    }
+}
+public class inherit{
+    public static void main(String args[]){
+        square ob = new square();
+        ob.area();
+    }
+}
+
+ABSTRACTION:
+ process of hiding certain details and showing only essential information to the user.
+
+diff bw interface and abstraction is:
+//interface variables are always static and final and cannot create a object directly
+//Abstarct class variables can be static and non static and final and cannot create a object directly
+
+--------------------------********--------------------------------------
+14/03/2023----DATA STRUCTURES 
+
+STACK
+
+Methods of stack are: Push,Pop,isEmpty,Peek
+
+Linked Lists: 
+-It is a linear data structure where data is stored continuously.
+-A linked list is a linear and non-primitive data structure in which each data element is allocated dynamically and points to the next element. Linked lists        consist of nodes where each node contains a data field and a reference (link) to the next node in the list.
+*Data part
+*Address part
+-It has no fixed size dislike an array
+-Implementation is easy
+
+Encapsulation:
+two types are-- classes and Packages
+
+-------------------------------********----------------------------------------
+28/3/23
+
+Solve this asked in interview 
+
+Description:
+
+You are given an array matrix of pixels having values '0' and '1'. Write a program to identify if there exists a patg between the coordinates(0,0) and (x,y) in the matrix, given the condition that you can move only along the ‘1’s. If there is a path between (0,0) and the given coordinates then print “ path found” else print “ path not found”.
+
+Constraints: Use a stack for your solution
+
+
+Input: The codeshould take the five lines of input from the users:
+
+The first line should be the number of rows in the input pixel matrix.
+
+The next line should be the number of columns in the pixel matrix.
+
+The third line should be the elements of the matrix.
+
+Next take the x-coordinate of the pixel to which the path is to be found as input.
+
+The y-coordinate of the pixel matrix to which the path is to be found.
+
+
+Note:Input matrix should consist of elements 1 and 0.
+
+Output: Only one line of output which will display "path found" if there exists a path between the given coordinates of the matrix, else "path not found" will be shown.
+
+Sample Test case:
+Input:
+4
+
+4
+
+1 0 0 0
+
+1 1 0 1
+
+0 1 0 0
+
+1 1 1 1
+
+3
+
+3
+
+Output:
+path found
+
+Explanation:
+There will 4 rows and 4 columns according to the first two lines of input. Next input is a 4*4 matrix of pixel values and then the x and y coordinates of the destination are given. The code needs to find if there exists a path between (0,0) and (3,3).
+
